@@ -8,7 +8,7 @@ const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const API_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+  const API_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     // Get user from localStorage or fetch from backend
