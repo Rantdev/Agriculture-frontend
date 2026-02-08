@@ -54,7 +54,7 @@ const Auth = ({ onLoginSuccess }) => {
             email: formData.email,
           };
 
-      const response = await fetch(`http://localhost:8000${endpoint}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}${endpoint}`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(payload),
@@ -88,7 +88,7 @@ const Auth = ({ onLoginSuccess }) => {
     } catch (err) {
       setError(
         err.message ||
-          'Connection error. Ensure backend is running on http://localhost:8000'
+          'Connection error. Ensure backend is running on the correct URL.'
       );
       setLoading(false);
     }

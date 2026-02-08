@@ -8,7 +8,7 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const API_URL = 'https://agriculture-backend-o46d.onrender.com';
+  const API_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
 
   const [formData, setFormData] = useState({
     username: '',
