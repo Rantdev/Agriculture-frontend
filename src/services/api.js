@@ -217,6 +217,4 @@ export default {
   sendChatFallback,
   loginUser,
   registerUser,
-  generateResponse,
-  fetchCrops,
 };
