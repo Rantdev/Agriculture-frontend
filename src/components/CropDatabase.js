@@ -42,11 +42,9 @@ const CropDatabase = () => {
   const profitabilityLevels = ['All', 'Low', 'Medium', 'High', 'Very High'];
 
   // Enhanced crop data with more details
- useEffect(() => {
-  loadCropDatabase();
-}, [loadCropDatabase]);
-
+  useEffect(() => {
   const loadCropDatabase = async () => {
+    // existing logic here
     setLoading(true);
     try {
       const cropData = await getCropDatabase();
@@ -61,6 +59,11 @@ const CropDatabase = () => {
       setLoading(false);
     }
   };
+
+  loadCropDatabase();
+}, []);
+
+
 
   const handleCropSelect = async (cropName) => {
     setLoading(true);

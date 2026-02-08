@@ -1,5 +1,5 @@
 // src/components/YieldPrediction.js - Updated with Column Layout
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect , useMemo } from 'react';
 import {
   BarChart3, Shield, AlertTriangle, CheckCircle,
   Calculator, Droplets, Target, Leaf, Cloud, Brain, RefreshCw,  IndianRupee, Zap, Layers
@@ -48,13 +48,13 @@ const YieldPrediction = ({ backendStatus }) => {
   const [predictionHistory, setPredictionHistory] = useState([]);
 
   // Crop database from backend
-  const cropDatabase = {
+ const cropDatabase = useMemo(() => ({
     'Rice': { base_yield: 4.0, optimal_fertilizer: 2.5, optimal_water: 6000 },
     'Wheat': { base_yield: 3.5, optimal_fertilizer: 2.0, optimal_water: 4000 },
     'Maize': { base_yield: 2.8, optimal_fertilizer: 1.8, optimal_water: 3500 },
     'Cotton': { base_yield: 1.8, optimal_fertilizer: 2.2, optimal_water: 4500 },
     'Sugarcane': { base_yield: 70.0, optimal_fertilizer: 3.0, optimal_water: 8000 }
-  };
+  }), []);
 
   // Update form when crop changes to show optimal values
   useEffect(() => {
@@ -66,7 +66,7 @@ const YieldPrediction = ({ backendStatus }) => {
         waterUsage: cropData.optimal_water
       }));
     }
-  }, [cropDatabase]);
+  }, [cropDatabase, formData.cropType]);
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({

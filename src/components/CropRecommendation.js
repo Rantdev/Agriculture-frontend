@@ -11,8 +11,7 @@ import {
   CloudRain,
   Sprout
 } from 'lucide-react';
-import { getCropRecommendations, getWeather } from '../services/api';
-
+import { getRecommendations, getWeather } from '../services/api';
 const CropRecommendation = ({ backendStatus }) => {
   const [formData, setFormData] = useState({
     location: '',
@@ -770,5 +769,5 @@ const ProfitabilityCard = ({ crop }) => (
     </div>
   </div>
 );
-
+getRecommendations();
 export default CropRecommendation; 

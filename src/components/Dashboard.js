@@ -1,5 +1,5 @@
 // src/components/Dashboard.js - Fixed Version
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Sprout, 
@@ -87,11 +87,8 @@ const Dashboard = ({ backendStatus }) => {
   ];
 
   useEffect(() => {
-  loadDashboardData();
-}, [loadDashboardData]);
-
   const loadDashboardData = async () => {
-    try {
+  try {
       // Load crop database for count
       const cropData = await getCropDatabase();
       setCropCount(Object.keys(cropData).length);
@@ -150,6 +147,10 @@ const Dashboard = ({ backendStatus }) => {
     }
   };
 
+  loadDashboardData();
+  }, [backendStatus]);
+
+  
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return 'Good Morning';

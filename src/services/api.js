@@ -27,29 +27,6 @@ export const callGoogleAI = async (message) => {
 // -------------------------------------------------------------
 // INTERNAL FALLBACK MOCK RESPONSE
 // -------------------------------------------------------------
-const generateEnhancedMockResponse = (message) => {
-  const m = (message || "").toLowerCase();
-
-  if (m.includes("rice")) {
-    return `🌾 **Rice Cultivation Guide**
-• Season: Kharif  
-• Water Need: High  
-• Soil: Clayey loam  
-• Duration: 90–120 days`;
-  }
-
-  if (m.includes("wheat")) {
-    return `🌾 **Wheat Farming Guide**
-• Season: Rabi  
-• Soil: Loam  
-• Water: Medium  
-• Duration: 110–130 days`;
-  }
-
-  return `🌱 **FarmAI Assistant**  
-I can help with cropping patterns, soil, irrigation, pest control, and market insights.  
-Tell me your *crop + location + challenge*.`;
-};
 
 // -------------------------------------------------------------
 // CHAT HANDLER (TRIES GOOGLE → FALLBACK MOCK)
@@ -205,7 +182,7 @@ export const registerUser = async (username, password, email) => {
 // Default export (convenience)
 // -------------------------------------------------------------
 
-export default {
+const apiService = {
   callGoogleAI,
   chatWithAssistant,
   healthCheck,
@@ -216,5 +193,7 @@ export default {
   getRecommendations,
   sendChatFallback,
   loginUser,
-  registerUser,
+  registerUser
 };
+
+export default apiService;

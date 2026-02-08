@@ -1,5 +1,5 @@
 // src/components/FarmingAssistant.js - Fixed Version
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo  } from 'react';
 import {
   Bot,
   Send,
@@ -34,7 +34,7 @@ const FarmingAssistant = ({ backendStatus }) => {
   const messagesEndRef = useRef(null);
 
   // Enhanced quick questions with categories
-  const quickQuestions = [
+const quickQuestions = useMemo(() => [
     {
       category: 'Crop Selection',
       questions: [
@@ -67,17 +67,11 @@ const FarmingAssistant = ({ backendStatus }) => {
         "Integrated Pest Management (IPM) guide"
       ]
     }
-  ];
+  ], []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  useEffect(() => {
-    scrollToBottom();
-    loadCropDatabase();
-    generateSuggestedQuestions();
-  },[generateSuggestedQuestions]);
 
   useEffect(() => {
     scrollToBottom();
@@ -92,6 +86,7 @@ const FarmingAssistant = ({ backendStatus }) => {
     }
   };
 
+  useEffect(() => {
   const generateSuggestedQuestions = () => {
     const questions = [];
     quickQuestions.forEach(category => {
@@ -99,6 +94,11 @@ const FarmingAssistant = ({ backendStatus }) => {
     });
     setSuggestedQuestions(questions.sort(() => 0.5 - Math.random()).slice(0, 6));
   };
+    loadCropDatabase();
+    scrollToBottom();
+    generateSuggestedQuestions();
+}, [quickQuestions]);
+
 
   // in FarmingAssistant.js (replace existing handleSendMessage)
 const handleSendMessage = async (e) => {
