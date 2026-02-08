@@ -1,0 +1,197 @@
+/* Auth.css - Login/Signup Page Styles */
+
+/* ===== FULLSCREEN CENTERING ===== */
+
+.auth-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;          /* vertical center */
+  justify-content: center;      /* horizontal center */
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* ===== LOGIN CARD ===== */
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 2rem 2.4rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.6s ease;
+  text-align: left;
+}
+
+/* ===== HEADER ===== */
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.auth-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* ===== ALERTS ===== */
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.alert-error {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.alert-success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* ===== FORM ===== */
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: #1e293b;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: 0.25s ease;
+}
+
+.input-wrapper:hover {
+  border-color: #0ea5e9;
+}
+
+.input-wrapper:focus-within {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+  background: #e0f2fe;
+}
+
+.input-wrapper input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+}
+
+/* PASSWORD TOGGLE */
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #475569;
+}
+
+/* ===== BUTTON ===== */
+
+.btn-auth {
+  width: 100%;
+  padding: 12px 14px;
+  background: #0284c7;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.4);
+  transition: 0.25s ease;
+}
+
+.btn-auth:hover {
+  background: #0369a1;
+  transform: translateY(-2px);
+}
+
+.btn-auth:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===== TOGGLE LOGIN/SIGNUP ===== */
+
+.auth-toggle {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.toggle-link {
+  background: none;
+  border: none;
+  color: #0284c7;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toggle-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* ===== ANIMATION ===== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.6rem 1.2rem;
+    max-width: 90%;
+  }
+}
