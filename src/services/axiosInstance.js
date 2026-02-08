@@ -1,7 +1,7 @@
 // frontend/src/services/axiosInstance.js
 import axios from 'axios';
 
-const API_BASE_URL =process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://agriculture-backend-o46d.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
