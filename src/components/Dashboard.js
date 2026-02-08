@@ -14,11 +14,8 @@ import {
   Calendar,
   ArrowRight,
   Zap,
-  Target,
   Award,
   Clock,
-  BarChart,
-  PieChart,
   Activity,
   Leaf,
   Droplets,
@@ -26,7 +23,7 @@ import {
   Lightbulb,
   User // Fixed: Added Lightbulb import
 } from 'lucide-react';
-import { healthCheck, getCropDatabase } from '../services/api';
+import { getCropDatabase } from '../services/api';
 
 const Dashboard = ({ backendStatus }) => {
   const [stats, setStats] = useState([
@@ -90,8 +87,8 @@ const Dashboard = ({ backendStatus }) => {
   ];
 
   useEffect(() => {
-    loadDashboardData();
-  }, []);
+  loadDashboardData();
+}, [loadDashboardData]);
 
   const loadDashboardData = async () => {
     try {

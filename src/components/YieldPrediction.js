@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   BarChart3, Shield, AlertTriangle, CheckCircle,
-  Calculator, Droplets, Target, Leaf, Cloud, Brain, Activity,
-  Download, RefreshCw, Copy, IndianRupee, Zap, Layers
+  Calculator, Droplets, Target, Leaf, Cloud, Brain, RefreshCw,  IndianRupee, Zap, Layers
 } from 'lucide-react';
 
 const YieldPrediction = ({ backendStatus }) => {
@@ -67,7 +66,7 @@ const YieldPrediction = ({ backendStatus }) => {
         waterUsage: cropData.optimal_water
       }));
     }
-  }, [formData.cropType]);
+  }, [cropDatabase]);
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({

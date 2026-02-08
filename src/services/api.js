@@ -204,6 +204,7 @@ export const registerUser = async (username, password, email) => {
 // -------------------------------------------------------------
 // Default export (convenience)
 // -------------------------------------------------------------
+
 export default {
   callGoogleAI,
   chatWithAssistant,
@@ -216,4 +217,6 @@ export default {
   sendChatFallback,
   loginUser,
   registerUser,
+  generateResponse,
+  fetchCrops,
 };

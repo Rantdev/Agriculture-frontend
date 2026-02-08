@@ -8,7 +8,6 @@ import {
   AlertTriangle,
   BarChart3,
   Sprout,
-  Filter,
   Users,
   X,
   CloudRain,
@@ -18,7 +17,6 @@ import {
   TrendingUp,
   Shield
 } from 'lucide-react';
-import { batchProcess } from '../services/api';
 
 const BatchProcessing = ({ backendStatus }) => {
   const [selectedFile, setSelectedFile] = useState(null);

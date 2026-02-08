@@ -11,16 +11,9 @@ import {
   Sprout,
   BarChart3,
   Clock,
-  Leaf,
-  Sun,
   CloudRain,
-  AlertTriangle,
-  CheckCircle,
   X,
   Download,
-  Share2,
-  Bookmark,
-  Star,
   Zap,
   Users,
   Target,
@@ -49,21 +42,9 @@ const CropDatabase = () => {
   const profitabilityLevels = ['All', 'Low', 'Medium', 'High', 'Very High'];
 
   // Enhanced crop data with more details
-  const cropCategories = {
-    'Grains': ['Rice', 'Wheat', 'Maize'],
-    'Cash Crops': ['Cotton', 'Sugarcane'],
-    'Pulses': [],
-    'Vegetables': [],
-    'Fruits': []
-  };
-
-  useEffect(() => {
-    loadCropDatabase();
-    const savedFavorites = localStorage.getItem('cropFavorites');
-    if (savedFavorites) {
-      setFavorites(new Set(JSON.parse(savedFavorites)));
-    }
-  }, []);
+ useEffect(() => {
+  loadCropDatabase();
+}, [loadCropDatabase]);
 
   const loadCropDatabase = async () => {
     setLoading(true);

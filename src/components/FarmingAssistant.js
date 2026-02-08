@@ -4,12 +4,10 @@ import {
   Bot,
   Send,
   User,
-  Brain,
   Sprout,
   Droplets,
   Shield,
   TrendingUp,
-  Clock,
   Zap,
   BookOpen,
   Lightbulb,
@@ -79,7 +77,7 @@ const FarmingAssistant = ({ backendStatus }) => {
     scrollToBottom();
     loadCropDatabase();
     generateSuggestedQuestions();
-  }, []);
+  },[generateSuggestedQuestions]);
 
   useEffect(() => {
     scrollToBottom();
