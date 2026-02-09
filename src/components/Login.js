@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, UserPlus } from 'lucide-react';
+import api from '../services/api';
 import '../styles/Auth.css';
 
 const Login = () => {
@@ -8,7 +9,6 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const API_URL = process.env.REACT_APP_API_BASE_URL;
 
   const [formData, setFormData] = useState({
     username: '',
@@ -31,22 +31,12 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch(`${API_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password
-        })
+      const response = await api.post('/api/auth/login', {
+        username: formData.username,
+        password: formData.password
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
-      }
+      const data = response.data;
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
@@ -70,23 +60,13 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          email: formData.email,
-          password: formData.password
-        })
+      const response = await api.post('/api/auth/register', {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
-      }
+      const data = response.data;
 
       setError('');
       setFormData({ username: '', email: '', password: '', confirmPassword: '' });

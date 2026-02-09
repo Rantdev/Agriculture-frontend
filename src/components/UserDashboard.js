@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, User, Mail, Calendar, Loader } from 'lucide-react';
+import api from '../services/api';
 import '../styles/Dashboard.css';
 
 const UserDashboard = () => {
@@ -8,7 +9,6 @@ const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const API_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     // Get user from localStorage or fetch from backend
@@ -29,23 +29,8 @@ const UserDashboard = () => {
     // Fetch current user from backend
     const fetchUser = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/auth/me`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (!response.ok) {
-          if (response.status === 401) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            navigate('/auth');
-            return;
-          }
-          throw new Error('Failed to fetch user');
-        }
-
-        const data = await response.json();
+        const response = await api.get('/api/auth/me');
+        const data = response.data;
         setUser(data.user);
         localStorage.setItem('user', JSON.stringify(data.user));
       } catch (err) {

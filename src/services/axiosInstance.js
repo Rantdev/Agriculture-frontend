@@ -14,6 +14,11 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     console.log(`🔄 API Call: ${config.method?.toUpperCase()} ${config.url}`);
+    // Add token to Authorization header if available
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => Promise.reject(error)

@@ -11,7 +11,7 @@ import {
   CloudRain,
   Sprout
 } from 'lucide-react';
-import { getRecommendations, getWeather } from '../services/api';
+import api, { getWeather } from '../services/api';
 const CropRecommendation = ({ backendStatus }) => {
   const [formData, setFormData] = useState({
     location: '',
@@ -87,17 +87,8 @@ const CropRecommendation = ({ backendStatus }) => {
     const payload = { ...formData, user_id: 'demo_user_001' };
 
     // Send data to backend for DB storage & AI processing
-    const response = await fetch('/api/crop-recommendation', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) throw new Error('Failed to save data');
-
-    const result = await response.json();
+    const response = await api.post('/api/crop-recommendation', payload);
+    const result = response.data;
 
     // result should contain AI recommendations
     setRecommendations(result.recommendations);

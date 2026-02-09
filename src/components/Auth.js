@@ -10,6 +10,7 @@ import {
   AlertCircle,
   CheckCircle,
 } from 'lucide-react';
+import api from '../services/api';
 import '../styles/Auth.css';
 
 const Auth = ({ onLoginSuccess }) => {
@@ -54,20 +55,8 @@ const Auth = ({ onLoginSuccess }) => {
             email: formData.email,
           };
 
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}${endpoint}`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(payload),
-});
- 
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.message || data.error || 'Authentication failed');
-        setLoading(false);
-        return;
-      }
+      const response = await api.post(endpoint, payload);
+      const data = response.data;
 
       // ✅ Store token and user data for persistent login
       if (data.token) {

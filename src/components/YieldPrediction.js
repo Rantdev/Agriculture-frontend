@@ -4,6 +4,7 @@ import {
   BarChart3, Shield, AlertTriangle, CheckCircle,
   Calculator, Droplets, Target, Leaf, Cloud, Brain, RefreshCw,  IndianRupee, Zap, Layers
 } from 'lucide-react';
+import api from '../services/api';
 
 const YieldPrediction = ({ backendStatus }) => {
   const [formData, setFormData] = useState({
@@ -99,19 +100,8 @@ const YieldPrediction = ({ backendStatus }) => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/predict`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
+      const response = await api.post('/predict', formData);
+      const result = response.data;
       
       // Enhanced prediction result with additional calculations
       const enhancedResult = {
