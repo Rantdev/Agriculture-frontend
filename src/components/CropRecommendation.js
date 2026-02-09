@@ -11,7 +11,8 @@ import {
   CloudRain,
   Sprout
 } from 'lucide-react';
-import api, { getRecommendations, getWeather } from '../services/api';
+import { getRecommendations } from "../services/api";
+import api, {  getWeather } from '../services/api';
 const CropRecommendation = ({ backendStatus }) => {
   const [formData, setFormData] = useState({
     location: '',
