@@ -4,7 +4,7 @@ import {
   BarChart3, Shield, AlertTriangle, CheckCircle,
   Calculator, Droplets, Target, Leaf, Cloud, Brain, RefreshCw,  IndianRupee, Zap, Layers
 } from 'lucide-react';
-import api from '../services/api';
+import api from '../services/axiosInstance';
 
 const YieldPrediction = ({ backendStatus }) => {
   const [formData, setFormData] = useState({

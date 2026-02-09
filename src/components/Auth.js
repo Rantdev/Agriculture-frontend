@@ -10,7 +10,7 @@ import {
   AlertCircle,
   CheckCircle,
 } from 'lucide-react';
-import api from '../services/api';
+import api from '../services/axiosInstance';
 import '../styles/Auth.css';
 
 const Auth = ({ onLoginSuccess }) => {
@@ -55,12 +55,15 @@ const Auth = ({ onLoginSuccess }) => {
             email: formData.email,
           };
 
+      console.log(`🔐 ${isLogin ? 'Login' : 'Register'} attempt...`);
       const response = await api.post(endpoint, payload);
       const data = response.data;
+      console.log(`✅ Auth successful`, data);
 
       // ✅ Store token and user data for persistent login
       if (data.token) {
         localStorage.setItem('token', data.token);
+        console.log('💾 Token stored');
       }
       localStorage.setItem('user', JSON.stringify(data.user || data));
 
@@ -75,10 +78,10 @@ const Auth = ({ onLoginSuccess }) => {
         navigate('/dashboard');
       }, 800);
     } catch (err) {
-      setError(
-        err.message ||
-          'Connection error. Ensure backend is running on the correct URL.'
-      );
+      console.error('❌ Auth error:', err);
+      const errorMsg = err.response?.data?.error || err.message ||
+          'Connection error. Ensure backend is running on the correct URL.';
+      setError(errorMsg);
       setLoading(false);
     }
   };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, UserPlus } from 'lucide-react';
-import api from '../services/api';
+import api from '../services/axiosInstance';
 import '../styles/Auth.css';
 
 const Login = () => {
@@ -31,18 +31,27 @@ const Login = () => {
     setError('');
 
     try {
+      console.log('🔐 Attempting login...');
       const response = await api.post('/api/auth/login', {
         username: formData.username,
         password: formData.password
       });
 
       const data = response.data;
+      console.log('✅ Login successful, storing token...', data);
+
+      if (!data.token) {
+        throw new Error('No token received from server');
+      }
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
+      console.log('💾 Token stored in localStorage');
       navigate('/');
     } catch (err) {
-      setError(err.message);
+      console.error('❌ Login error:', err);
+      const errorMsg = err.response?.data?.error || err.message || 'Login failed';
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
