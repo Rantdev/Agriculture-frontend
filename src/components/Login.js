@@ -50,7 +50,7 @@ const Login = () => {
       navigate('/');
     } catch (err) {
       console.error('❌ Login error:', err);
-      const errorMsg = err.response?.data?.error || err.message || 'Login failed';
+      const errorMsg = err.response?.data?.message || err.response?.data?.error || err.message || 'Login failed';
       setError(errorMsg);
     } finally {
       setLoading(false);
@@ -82,7 +82,8 @@ const Login = () => {
       setIsLogin(true);
       alert('Registration successful! Please login.');
     } catch (err) {
-      setError(err.message);
+      const errorMsg = err.response?.data?.message || err.response?.data?.error || err.message || 'Registration failed';
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
